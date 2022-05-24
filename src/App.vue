@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <SideNav/>
+    <router-view class="component-view"/>
   </div>
 </template>
+
+<script>
+    import SideNav from './components/partials/SideNav.vue'
+    export default {
+        name: 'App',
+        components: {
+            SideNav,
+        }
+    }
+</script>
 
 <style lang="scss">
 #app {
@@ -29,4 +36,9 @@ nav {
     }
   }
 }
+
+    .component-view {
+        margin-left: 200px;
+        margin-top: 50px;
+    }
 </style>
