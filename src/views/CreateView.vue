@@ -44,20 +44,17 @@
                               required></b-form-input>
             </b-form-group>
 
-            <!--<b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
+            <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
                 <b-form-checkbox-group v-model="form.checked"
                                        id="checkboxes-4"
                                        :aria-describedby="ariaDescribedby">
                     <b-form-checkbox value="yes">Everything correct?</b-form-checkbox>
                 </b-form-checkbox-group>
-            </b-form-group>-->
+            </b-form-group>
 
             <b-button class="btn-margin" type="submit" variant="primary">Submit</b-button>
             <b-button class="btn-margin" type="reset" variant="danger">Reset</b-button>
         </b-form>
-        <!--<b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
-        </b-card>-->
     </div>
 </template>
 
@@ -77,8 +74,8 @@
               description: '',
               brand: '',
               category: null,
-              _id: Math.ceil(Math.random() * 100000)
-              //checked: []
+              _id: Math.ceil(Math.random() * 100000),
+              checked: []
             },
               categorys: [{ text: 'Select One', value: null }, 'Fruit', 'Battery', 'Dairy', 'Sweets'],
             show: true
@@ -100,7 +97,7 @@
                 this.form.description = ''
                 this.form.brand = ''
                 this.form.category = null
-                //this.form.checked = ['no']
+                this.form.checked = ['no']
                 // Trick to reset/clear native browser form validation state
                 this.show = false
                 this.$nextTick(() => {
