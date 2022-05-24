@@ -1,15 +1,14 @@
 <template>
     <div>
-        <Dashboard />
+        <b-button class="btn-margin" type="submit" variant="primary"><router-link :to="'/create/' + `${this.brandid}`">Voeg nieuw product toe</router-link></b-button>
         <div v-for="item in list" v-bind:key="item.id" class="partners">
-            <a href="#partnerName1">
+            <a>
                 <b-container class="center rows" style="max-width: 1200px">
                     <b-row>
-                        <b-col><img :src="`data:image/png;base64,${item.Icon}`" class="logo" alt="" /></b-col>
-                        <b-col><router-link :to="'/brand/' + `${item.Id}`">{{item.Name}}</router-link></b-col>
-                        <b-col cols="4"> <b-progress :max="max"><b-progress-bar :value="AHValue" :label="`${((AHValue / max) * 100).toFixed(2)}%`" show-progress></b-progress-bar></b-progress></b-col>
-                        <b-col>{{item.Country}}</b-col>
-                        <b-col>{{item.ProductCount}}</b-col>
+                        <b-col>{{item.Name}}</b-col>
+                        <b-col cols="4"> <b-progress :max="max"><b-progress-bar :value="`${item.Completeness}`" :label="`${item.Completeness}%`" show-progress></b-progress-bar></b-progress></b-col>
+                        <b-col>{{item.Description}}</b-col>
+                        <b-col>{{item.Category}}</b-col>
                     </b-row>
                 </b-container>
             </a>
@@ -19,28 +18,22 @@
 
 <script>
     import Vue from 'vue'
-    import Dashboard from '@/components/partials/Dashboard.vue'
     import axios from 'axios'
     import VueAxios from 'vue-axios'
     Vue.use(VueAxios, axios)
     export default {
-        name: 'OverviewView',
+        name: 'BrandView',
         components: {
-            Dashboard,
         },
         data() {
             return {
-                AHValue: 80,
-                JumboValue: 75,
-                EtosValue: 35,
-                AmazonValue: 100,
-                max: 100,
-                list: undefined
+                list: undefined,
+                brandid: this.$route.params.brandid
             };
         },
         mounted() {
             axios
-                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/brand/getbrands')
+                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/Product/GetProduct?id=' + this.brandid)
                 .then(response => {
                     console.warn(response.data)
                     this.list = response.data
@@ -56,21 +49,23 @@
         padding: 4px;
     }
 
-    .rows{
+    .rows {
         border-color: black;
         background-color: white;
         border-bottom-width: thin;
         border-bottom: solid;
         border-color: black;
     }
+
     template {
         background-color: whitesmoke;
     }
-    .partners{
+
+    .partners {
         margin-bottom: 10px;
     }
 
-    .logo{
+    .logo {
         max-height: 40px;
     }
 </style>
