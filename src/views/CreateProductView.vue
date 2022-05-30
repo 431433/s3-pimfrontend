@@ -104,6 +104,7 @@
                 this.form.description = ''
                 this.form.brand = ''
                 this.form.checked = ['no']
+                this.properties = null
                 // Trick to reset/clear native browser form validation state
                 this.show = false
                 this.$nextTick(() => {
