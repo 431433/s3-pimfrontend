@@ -1,6 +1,15 @@
 <template>
-    <div>
-        <b-button class="btn-margin" type="submit" variant="primary"><router-link :to="'/create/' + `${this.brandid}`">Voeg nieuw product toe</router-link></b-button>
+    <div class="overview">
+        <div>
+            <h1 style="text-align:left">
+                Products overview
+            </h1>
+            <hr />
+            <br />
+        </div>
+        <b-button class="btn-margin" type="submit" variant="primary" style="margin-bottom: 50px;"><router-link :to="'/create/' + `${this.brandid}`"><p class="btn">Voeg nieuw product toe</p></router-link></b-button>
+        <br />
+
         <div v-for="item in list" v-bind:key="item.id" class="partners">
             <a>
                 <b-container class="center rows" style="max-width: 1200px">
@@ -42,7 +51,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .center {
         margin: auto;
         width: 70%;
@@ -67,5 +76,18 @@
 
     .logo {
         max-height: 40px;
+    }
+
+    .overview{
+        margin-top: 60px;
+    }
+
+    .btn{
+        color: white;
+        margin:-7px;
+    }
+
+    .btn :hover{
+        color: black;
     }
 </style>

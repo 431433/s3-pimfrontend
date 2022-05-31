@@ -2,17 +2,17 @@
     <div>
         <Dashboard />
         <div v-for="item in list" v-bind:key="item.id" class="partners">
-            <a href="#partnerName1">
+            <router-link :to="'/brand/' + `${item.Id}`">
                 <b-container class="center rows" style="max-width: 1200px">
                     <b-row>
                         <b-col><img :src="`data:image/png;base64,${item.Icon}`" class="logo" alt="" /></b-col>
-                        <b-col><router-link :to="'/brand/' + `${item.Id}`">{{item.Name}}</router-link></b-col>
+                        <b-col>{{item.Name}}</b-col>
                         <b-col cols="4"> <b-progress :max="max"><b-progress-bar :value="AHValue" :label="`${((AHValue / max) * 100).toFixed(2)}%`" show-progress></b-progress-bar></b-progress></b-col>
                         <b-col>{{item.Country}}</b-col>
                         <b-col>{{item.ProductCount}}</b-col>
                     </b-row>
                 </b-container>
-            </a>
+            </router-link>
         </div>
     </div>
 </template>

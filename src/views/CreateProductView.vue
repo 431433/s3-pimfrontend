@@ -43,7 +43,7 @@
 
                 <b-form-group v-for="prop in properties" :label="prop.Name" :key="prop.Name">
                     <b-form-input :id="prop.Name"
-                                  placeholder="Enter value"
+                                  placeholder="Enter " + {{prop.Name}}
                                   :type="prop.Type"
                                   required></b-form-input>
                 </b-form-group>
@@ -85,7 +85,7 @@
                 categorys: null,
                 show: true,
                 properties: null,
-                partnerId: null
+                brandId: this.$route.params.brandId
             }
         },
         methods: {
