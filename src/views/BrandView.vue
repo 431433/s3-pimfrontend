@@ -61,9 +61,7 @@
     .rows {
         border-color: black;
         background-color: white;
-        border-bottom-width: thin;
         border-bottom: solid;
-        border-color: black;
     }
 
     template {
