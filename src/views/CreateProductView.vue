@@ -43,7 +43,7 @@
 
                 <b-form-group v-for="prop in properties" :label="prop.Name" :key="prop.Name">
                     <b-form-input :id="prop.Name"
-                                  placeholder="test"
+                                  :placeholder="'Enter ' + `${prop.Name}`"
                                   :type="prop.Type"
                                   required></b-form-input>
                 </b-form-group>
@@ -85,7 +85,7 @@
                 categorys: null,
                 show: true,
                 properties: null,
-                partnerId: null
+                brandId: this.$route.params.brandId
             }
         },
         methods: {
@@ -104,6 +104,7 @@
                 this.form.description = ''
                 this.form.brand = ''
                 this.form.checked = ['no']
+                this.properties = null
                 // Trick to reset/clear native browser form validation state
                 this.show = false
                 this.$nextTick(() => {

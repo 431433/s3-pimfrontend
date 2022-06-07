@@ -15,10 +15,11 @@ const routes = [
         component: () => import('../views/OverviewView.vue')
     },
     {
-        path: '/test',
-        name: 'test',
+        path: '/create/:brandId',
+        name: 'create',
         component: () => import('../views/CreateProductView.vue')
     },
+    {
         path: '/brand/:brandid',
         name: 'brand',
         component: () => import('../views/BrandView.vue')
