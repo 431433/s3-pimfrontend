@@ -1,44 +1,34 @@
 <template>
     <div>
-        <div style="margin-top: 15%;">
+        <div style="margin-top:10%">
             <h2 v-if="!$auth.isAuthenticated">Please login to continue on this site</h2>
             <h3 v-if="$auth.isAuthenticated">Thanks for login in, on the left of your screen u can see al the options you are authorised to use.</h3>
-        </div>
+        </div><br />
 
-        <div>
-            <h4>Your profile</h4><hr />
-            <button @click="login">Log in</button>
-            <pre v-if="isAuthenticated">
-            <code>{{ user }}</code>
-      </pre>
-        </div>
+              <div v-if="$auth.isAuthenticated">
+                  <h4 style="margin-top: 5%;">Your know records:</h4><br />
+                  <div>
+                      <div>
+                          <img :src="$auth.user.picture"
+                               alt="no profile picture found"
+                               class="img-fluid profile-picture" />
+                      </div>
+                      <div style="margin-top: 10px">
+                          <p class="lead text-muted">Name: {{ $auth.user.name }}</p>
+                          <p class="lead text-muted">E-mail: {{ $auth.user.email }}</p>
+                      </div>
+                  </div>
+              </div>
     </div>
 </template>
 
 
 <script>
-    import { useAuth0 } from '@auth0/auth0-vue';
     export default {
-        name: 'StartView',
-        setup() {
-            const { loginWithRedirect, user, isAuthenticated } = useAuth0();
-
-            return {
-                login: () => {
-                    loginWithRedirect();
-                },
-                user,
-                isAuthenticated
-            };
-        }
+        name: 'StartView'
     }
 </script>
 
 
-<style>
-    .center{
-        justify-content: center;
-        position: absolute;
-        align-content: center;
-    }
+<style scoped>
 </style>
