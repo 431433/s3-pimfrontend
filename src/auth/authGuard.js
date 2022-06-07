@@ -1,5 +1,5 @@
 import { getInstance } from "./index";
-export const authGuard = (to, next) => {
+export const authGuard = (to, from, next) => {
     const authService = getInstance();
     const fn = () => {
         // If the user is authenticated, continue with the route

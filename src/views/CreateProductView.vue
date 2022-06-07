@@ -111,7 +111,7 @@
                     this.show = true
                 })
             },
-            getArray(event, properties) { //changed, was wihout event, 
+            getArray(properties) { //changed, was wihout event, 
                 event.preventDefault()
                 this.properties = properties
                 console.warn(this.properties)
