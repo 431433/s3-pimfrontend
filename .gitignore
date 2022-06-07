@@ -26,3 +26,5 @@ pnpm-debug.log*
 /.vs/ProjectSettings.json
 *.sqlite
 /.vs/VSWorkspaceState.json
+
+auth_config.json
