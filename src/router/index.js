@@ -6,12 +6,6 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/create',
-        name: 'create',
-        component: () => import('../views/CreateView.vue'),
-        beforeEnter: authGuard
-    },
-    {
         path: '/',
         name: 'start',
         component: () => import('../views/StartView.vue')

@@ -7,9 +7,7 @@
                     <b-row>
                         <b-col><img :src="`data:image/png;base64,${item.Icon}`" class="logo" alt="" /></b-col>
                         <b-col>{{item.Name}}</b-col>
-                        <b-col cols="4"> <b-progress :max="max"><b-progress-bar :value="AHValue" :label="`${((AHValue / max) * 100).toFixed(2)}%`" show-progress></b-progress-bar></b-progress></b-col>
                         <b-col>{{item.Country}}</b-col>
-                        <b-col>{{item.ProductCount}}</b-col>
                     </b-row>
                 </b-container>
             </router-link>
@@ -40,7 +38,7 @@
         },
         mounted() {
             axios
-                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/brand/getbrands')
+                .get('https://apigatewaywocpim20220610120310.azurewebsites.net/brand/getbrands')
                 .then(response => {
                     console.warn(response.data)
                     this.list = response.data
@@ -69,6 +67,6 @@
     }
 
     .logo{
-        max-height: 40px;
+        max-height: 50px;
     }
 </style>
