@@ -85,7 +85,7 @@
             onSubmit(event) {
                 event.preventDefault()
                 alert("Succes!")
-                axios.get('https://apigatewaywocpim20220426105112.azurewebsites.net/product/upload?json=' + JSON.stringify(this.form))
+                axios.get('https://apigatewaywocpim20220610120310.azurewebsites.net/product/upload?json=' + JSON.stringify(this.form))
                     .then(function (response) {
                         console.log(response);
                     })
@@ -107,7 +107,7 @@
         },
         mounted() {
             axios
-                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/product/getproducts')
+                .get('https://apigatewaywocpim20220610120310.azurewebsites.net/product/getproducts')
                 .then(response => {
                     console.warn(response.data)
                     this.list = response.data

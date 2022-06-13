@@ -9,18 +9,29 @@
         </div>
         <b-button class="btn-margin" type="submit" variant="primary" style="margin-bottom: 50px;"><router-link :to="'/create/' + `${this.brandid}`"><p class="btn">Voeg nieuw product toe</p></router-link></b-button>
         <br />
+        <b-button class="back" variant="secondary" @click="$router.go(-1)">Back</b-button>
 
-        <div v-for="item in list" v-bind:key="item.id" class="partners">
-            <a>
-                <b-container class="center rows" style="max-width: 1200px">
-                    <b-row>
-                        <b-col>{{item.Name}}</b-col>
-                        <b-col cols="4"> <b-progress :max="max"><b-progress-bar :value="`${item.Completeness}`" :label="`${item.Completeness}%`" show-progress></b-progress-bar></b-progress></b-col>
-                        <b-col>{{item.Description}}</b-col>
-                        <b-col>{{item.Category}}</b-col>
-                    </b-row>
-                </b-container>
-            </a>
+        <div style="margin-left: 10%;">
+            <b-container fluid>
+                <b-row cols="1" cols-sm="2" cols-md="3" cols-lg="4">
+                    <b-card-group v-for="item in list" v-bind:key="item._id" class="partners" deck>
+                        <b-card :title="item.name">
+                            <b-card-text style="margin-bottom:30px;">
+                                {{item.description}}
+                            </b-card-text>
+                            <b-form @submit="onSubmit">
+                                <b-button variant="danger" @click="onSubmit($event, item._id)" class="btn-align">Delete</b-button>
+                            </b-form>
+                            <template #footer>
+                                <small class="text-muted">{{item.category}}</small>
+                            </template>
+                        </b-card>
+                    </b-card-group>
+                </b-row>
+            </b-container>
+            <div v-if="!list || !list.length">
+                <h2 class="msg">No products were yet made</h2>
+            </div>
         </div>
     </div>
 </template>
@@ -40,11 +51,23 @@
                 brandid: this.$route.params.brandid
             };
         },
-        mounted() {
+        methods: {
+            onSubmit(event, id) {
+                event.preventDefault()
+                alert("Succes!")
+                axios.get('https://apigatewaywocpim20220610120310.azurewebsites.net/Product/Deleteproduct?id=' + parseInt(id))
+                    .then(function (response) {
+                        console.log(response);
+                        console.log(id);
+                    })
+            }
+        },
+        async mounted() {
             axios
-                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/Product/GetProduct?id=' + this.brandid)
+                .get('https://apigatewaywocpim20220610120310.azurewebsites.net/Product/GetProduct?id=' + this.brandid)
                 .then(response => {
-                    console.warn(response.data)
+                    console.log(response.data)
+                    console.log(this.list),
                     this.list = response.data
                 })
         }
@@ -69,7 +92,7 @@
     }
 
     .partners {
-        margin-bottom: 10px;
+        margin: 10px;
     }
 
     .logo {
@@ -87,5 +110,26 @@
 
     .btn :hover{
         color: black;
+    }
+
+    .btn-align {
+        position: absolute;
+        right: 15px;
+        bottom: 60px;
+    }
+
+    .btn-margin{
+        margin-left: -6%;
+    }
+
+    .back {
+        position: absolute;
+        left:20%;
+        top: 20%;
+    }
+
+    .msg{
+        text-align: center;
+        margin-left: -13%;
     }
 </style>

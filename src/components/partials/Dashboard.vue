@@ -40,7 +40,7 @@
         },
         mounted() {
             axios
-                .get('https://apigatewaywocpim20220426105112.azurewebsites.net/home/home')
+                .get('https://apigatewaywocpim20220610120310.azurewebsites.net/home/home')
                 .then(response => {
                     console.warn(response.data)
                     this.info = response.data
